@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 Personality Types™</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-number">
+                <img src="./images/logo.png" alt="16 Personality Types Logo" class="logo-image">
+            </div>
+            <span class="logo-text">Personality Types™</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" class="nav-link">Take the Test</a>
+            <a href="#personality-wheel" class="nav-link">Personality Types</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link dropdown-toggle">Learn More ▼</a>
+                <div class="dropdown-menu">
+                    <a href="#features" class="dropdown-item">Our Framework</a>
+                    <a href="#personality-wheel" class="dropdown-item">Decoding Personalities</a>
+                    <a href="#main-content" class="dropdown-item">Introduction to Profiling</a>
+                </div>
+            </div>
+            <a href="#features" class="nav-link">Teams</a>
+            <a href="#testimonials" class="nav-link">Testimonials</a>
+        </nav>
+        <div class="header-right">
+            <a href="#" class="nav-link">Login</a>
+            <div class="language-selector" id="languageSelector">
+                <span class="flag-icon">&#x1F1FA;&#x1F1F8;</span>
+                <span class="language-text">English (US) ▼</span>
+            </div>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Language Selection Modal -->
+    <div class="language-modal" id="languageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <img src="./images/logo.png" alt="16 Personality Types Logo" class="modal-logo-img">
+                </div>
+                <h3>Select your language</h3>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="language-grid">
+                    <div class="language-option selected" data-lang="en-us">
+                        <span class="lang-flag">&#x1F1FA;&#x1F1F8;</span>
+                        <span class="lang-name">English (US)</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="en-uk">
+                        <span class="lang-flag">&#x1F1EC;&#x1F1E7;</span>
+                        <span class="lang-name">English (UK)</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="es">
+                        <span class="lang-flag">&#x1F1EA;&#x1F1F8;</span>
+                        <span class="lang-name">Español</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="pt-br">
+                        <span class="lang-flag">&#x1F1E7;&#x1F1F7;</span>
+                        <span class="lang-name">Português (BR)</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="pt-pt">
+                        <span class="lang-flag">&#x1F1F5;&#x1F1F9;</span>
+                        <span class="lang-name">Português (PT)</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="de">
+                        <span class="lang-flag">&#x1F1E9;&#x1F1EA;</span>
+                        <span class="lang-name">Deutsch</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="ar">
+                        <span class="lang-flag">&#x1F1F8;&#x1F1E6;</span>
+                        <span class="lang-name">العربية</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="zh">
+                        <span class="lang-flag">&#x1F1E8;&#x1F1F3;</span>
+                        <span class="lang-name">简体中文</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="el">
+                        <span class="lang-flag">&#x1F1EC;&#x1F1F7;</span>
+                        <span class="lang-name">Ελληνικά</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="id">
+                        <span class="lang-flag">&#x1F1EE;&#x1F1E9;</span>
+                        <span class="lang-name">Bahasa Indonesia</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="ms">
+                        <span class="lang-flag">&#x1F1F2;&#x1F1FE;</span>
+                        <span class="lang-name">Bahasa Malaysia</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="th">
+                        <span class="lang-flag">&#x1F1F9;&#x1F1ED;</span>
+                        <span class="lang-name">ภาษาไทย</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="pl">
+                        <span class="lang-flag">&#x1F1F5;&#x1F1F1;</span>
+                        <span class="lang-name">Polski</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                    <div class="language-option" data-lang="cs">
+                        <span class="lang-flag">&#x1F1E8;&#x1F1FF;</span>
+                        <span class="lang-name">Čeština</span>
+                        <span class="lang-check">✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Mobile Sidebar Navigation -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="./images/logo.png" alt="16 Personality Types Logo" class="sidebar-logo-img">
+                <span class="sidebar-logo-text">Personality Types™</span>
+            </div>
+            <button class="sidebar-close" id="sidebarClose">×</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#hero" class="sidebar-link">Take the Test</a>
+            <a href="#personality-wheel" class="sidebar-link">Personality Types</a>
+            <a href="#features" class="sidebar-link">Teams</a>
+            <a href="#testimonials" class="sidebar-link">Testimonials</a>
+            <a href="#main-content" class="sidebar-link">Learn More</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="sidebar-login">Login</a>
+            <div class="sidebar-language" id="sidebarLanguageSelector">
+                <span class="sidebar-flag">&#x1F1FA;&#x1F1F8;</span>
+                <span class="sidebar-language-text">English (US) ▼</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-left-illustration">
+            <img src="./images/hero-left.png" alt="Man with lightbulb idea" class="hero-illustration">
+        </div>
+        <div class="hero-content">
+            <h1>Find your unique personality blueprint</h1>
+            <p>Discover your personality type and uncover your hidden strengths and life patterns with our free test.</p>
+            <button class="cta-button">Take the Test →</button>
+        </div>
+        <div class="hero-right-illustration">
+            <img src="./images/hero-right.png" alt="Woman with camera" class="hero-illustration">
+        </div>
+        <!-- Mobile character container -->
+        <div class="character-container">
+            <!-- Only one character will be visible here at a time -->
+            <div class="character active" data-index="0"></div>
+        </div>
+        <div class="curve curve-1"></div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="stats-card">
+            <div class="stat-item">
+                <div class="stat-number">90K+</div>
+                <div class="stat-label">Tests taken today</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6M+</div>
+                <div class="stat-label">Tests taken in the last 30 days</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">53M+</div>
+                <div class="stat-label">Total tests taken</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">96.2%</div>
+                <div class="stat-label">Results rated as accurate</div>
+            </div>
+        </div>
+        <div class="curve curve-2"></div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="main-content" id="main-content">
+        <div class="main-content-wrapper">
+            <div class="main-content-text">
+                <h2>The world's most popular personality test</h2>
+                <p>Join millions of satisfied users around the world who have found their true personality types and discovered insights into who they are and the roadmaps for their lives beyond MBTI.</p>
+            </div>
+            <div class="main-content-logo">
+                <div class="main-logo-number">
+                    <img src="./images/logo.png" alt="16 Personality Types Logo" class="main-logo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section class="reports-section">
+        <div class="reports-wrapper">
+            <div class="reports-text">
+                <h3>Detailed report of your personality type</h3>
+                <p>Learn more about your personality type, how you relate to the world, what drives you and how to tap on your hidden strengths to overcome the recurring challenges you face in life.</p>
+            </div>
+            <div class="reports-image">
+                <img src="./images/report.png" alt="Detailed Personality Report" class="report-image">
+            </div>
+        </div>
+        <div class="curve curve-2"></div>
+    </section>
+
+    <!-- Personality Wheel Section -->
+    <section class="personality-wheel" id="personality-wheel">
+        <div class="wheel-content">
+            <div class="wheel-text">
+                <h3>Curious about the 16 personalities?</h3>
+                <p>Discovering your Myers Briggs type can be the key to unlocking how you relate to the people around you, enhancing your personal and professional relationships with the people around you.</p>
+                <button class="cta-button">Take the Test →</button>
+            </div>
+            <div class="wheel-container">
+                <div class="wheel">
+                    <div class="wheel-segment" data-type="ISFJ" data-title="The Protector" data-description="Warm-hearted, conscientious, and harmonious. ISFJs focus on meeting others' needs and maintaining stability." style="--color: #D63384">ISFJ</div>
+                    <div class="wheel-segment" data-type="ESFJ" data-title="The Consul" data-description="Caring, social, and dutiful. ESFJs are attentive to others and skilled at bringing out the best in people." style="--color: #DC3545">ESFJ</div>
+                    <div class="wheel-segment" data-type="ESTJ" data-title="The Executive" data-description="Efficient, energetic, and self-confident. ESTJs are natural leaders who organize people and projects." style="--color: #FD7E14">ESTJ</div>
+                    <div class="wheel-segment" data-type="ISTP" data-title="The Virtuoso" data-description="Bold, practical, and adaptable. ISTPs are hands-on learners who excel at understanding how things work." style="--color: #FFC107">ISTP</div>
+                    <div class="wheel-segment" data-type="ISFP" data-title="The Adventurer" data-description="Flexible, charming, and artistic. ISFPs are driven by their values and seek harmony in their environment." style="--color: #28A745">ISFP</div>
+                    <div class="wheel-segment" data-type="ESFP" data-title="The Entertainer" data-description="Spontaneous, energetic, and enthusiastic. ESFPs love life and draw others into their excitement." style="--color: #20C997">ESFP</div>
+                    <div class="wheel-segment" data-type="ENFP" data-title="The Campaigner" data-description="Creative, sociable, and free-spirited. ENFPs are driven by possibilities and connections with others." style="--color: #17A2B8">ENFP</div>
+                    <div class="wheel-segment" data-type="ENFJ" data-title="The Protagonist" data-description="Charismatic, inspiring, and altruistic. ENFJs are natural leaders who guide others toward personal growth." style="--color: #6F42C1">ENFJ</div>
+                    <div class="wheel-segment" data-type="INFJ" data-title="The Advocate" data-description="Idealistic, insightful, and principled. INFJs seek meaning and connection in relationships and ideas." style="--color: #6610F2">INFJ</div>
+                    <div class="wheel-segment" data-type="INFP" data-title="The Mediator" data-description="Loyal, caring, and individualistic. INFPs are driven by their values and desire to help others." style="--color: #0D6EFD">INFP</div>
+                    <div class="wheel-segment" data-type="INTJ" data-title="The Architect" data-description="Imaginative, strategic, and determined. INTJs are independent thinkers focused on implementing their vision." style="--color: #0DCAF0">INTJ</div>
+                    <div class="wheel-segment" data-type="INTP" data-title="The Thinker" data-description="Innovative, curious, and flexible. INTPs are drawn to theoretical and abstract thinking." style="--color: #198754">INTP</div>
+                    <div class="wheel-segment" data-type="ENTP" data-title="The Debater" data-description="Smart, curious, and playful. ENTPs are innovators who enjoy exploring new possibilities and ideas." style="--color: #FFC107">ENTP</div>
+                    <div class="wheel-segment" data-type="ENTJ" data-title="The Commander" data-description="Bold, imaginative, and strong-willed. ENTJs are natural leaders who enjoy organizing and directing others." style="--color: #DC3545">ENTJ</div>
+                    <div class="wheel-segment" data-type="ISTJ" data-title="The Logistician" data-description="Practical, fact-minded, and reliable. ISTJs are responsible organizers driven to create order." style="--color: #6C757D">ISTJ</div>
+                    <div class="wheel-segment" data-type="ESTP" data-title="The Entrepreneur" data-description="Smart, energetic, and perceptive. ESTPs are flexible and adaptable, focused on immediate results." style="--color: #FD7E14">ESTP</div>
+                    <div class="wheel-center">
+                        <div class="center-text">Click one slice to view description!</div>
+                        <div class="center-arrow">↑</div>
+                        <div class="center-type" style="display: none;"></div>
+                        <div class="center-title" style="display: none;"></div>
+                        <div class="center-description" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="quote-icon">
+            <img src="./images/quote.png" alt="Quote" class="quote-image">
+        </div>
+        <h3>See what our users say</h3>
+        <div class="rating">
+            <div class="rating-number">4.7/5</div>
+            <div class="rating-count">578 Reviews</div>
+        </div>
+        <div class="reviews-carousel">
+            <div class="review-card active">
+                <div class="review-stars">★★★★★</div>
+                <div class="reviewer">Malia C. from New York</div>
+                <div class="personality-type">ESTJ*A: The Director</div>
+                <div class="review-text">Wow! This site is really AMAZING! The results of the quiz are so spot on and super practical. Highly recommend if you look for love advice.</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <div class="reviewer">Sarah K. from California</div>
+                <div class="personality-type">INFP: The Idealist</div>
+                <div class="review-text">Incredible accuracy! The personality insights helped me understand myself better. The detailed report was exactly what I needed.</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <div class="reviewer">Michael T. from Texas</div>
+                <div class="personality-type">ENTJ: The Commander</div>
+                <div class="review-text">Professional and insightful. The test gave me valuable insights into my leadership style and communication preferences.</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <div class="reviewer">Emma L. from Florida</div>
+                <div class="personality-type">ENFP: The Free Spirit</div>
+                <div class="review-text">This test completely changed how I understand myself. The insights are incredibly accurate and the detailed report is worth every minute.</div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <div class="carousel-arrow left">◀</div>
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="carousel-arrow right">▶</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h3>Accurate, Reliable, Trusted</h3>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon framework">
+                    <img src="./images/framework.png" alt="Framework" class="feature-image">
+                </div>
+                <div class="feature-title">Framework</div>
+                <div class="feature-description">Based on Carl Jung's and Myer-Briggs' (MBTI) personality indicators, further refined</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon partner">
+                    <img src="./images/partner.png" alt="Trusted Partner" class="feature-image">
+                </div>
+                <div class="feature-title">Trusted Partner</div>
+                <div class="feature-description">Trusted by professional coaches and organizations</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon insights">
+                    <img src="./images/insights.png" alt="Deeper Insights" class="feature-image">
+                </div>
+                <div class="feature-title">Deeper Insights</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon leader">
+                    <img src="./images/leader.png" alt="Global Leader" class="feature-image">
+                </div>
+                <div class="feature-title">Global Leader</div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <h3>Curious about your unique characteristics?</h3>
+        <div class="live-counter">
+            <div class="counter-dot"></div>
+            <span>379 people are taking the test right now</span>
+        </div>
+        <button class="cta-button">Take the Test →</button>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <div class="social-prompt">Ask your friends & family to take our quiz too!</div>
+        <div class="social-icons">
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=KMtmexKCq5RAHKoS" class="social-icon facebook" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=KMtmexKCq5RAHKoS" class="social-icon instagram" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=KMtmexKCq5RAHKoS" class="social-icon twitter" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+            </a>
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=KMtmexKCq5RAHKoS" class="social-icon linkedin" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=KMtmexKCq5RAHKoS" class="social-icon youtube" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="sustainability">
+        <div class="sustainability-icon">🌱</div>
+        <h3>Sustainability</h3>
+        <p>We are committed to renewable energy usage for our infrastructure and use energy coming from wind and solar farms.</p>
+        <p>When you use our service, your digital footprint is offset with clean energy, which reduces your impact on the environment.</p>
+    </section>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html> 
