@@ -334,12 +334,14 @@ function initWheelInteractions() {
                     p.style.filter = "grayscale(1) brightness(0.7)";
                     p.style.transform = "scale(1)";
                     p.style.transition = "all 0.4s ease";
+                    p.classList.add('grayed-out'); // Add class for Safari compatibility
                 });
                 
                 // Highlight clicked path with subtle effect
                 this.style.filter = "brightness(1.05) saturate(1.1) grayscale(0)";
                 this.style.transform = "scale(1.02)";
                 this.style.transition = "all 0.4s ease";
+                this.classList.remove('grayed-out'); // Remove grayed-out class
                 
                 // Get personality data
                 const type = this.getAttribute('data-type');
@@ -447,17 +449,18 @@ function initWheelInteractions() {
     // Initial wheel creation
     createSVGWheel();
 
-    // Reset wheel when clicking outside
-    wheel.addEventListener('click', function(e) {
-        if (e.target === wheel) {
-            const svg = wheel.querySelector('svg');
-            if (svg) {
-                svg.querySelectorAll('path').forEach(p => {
-                    p.style.filter = "brightness(1) saturate(1) grayscale(0)";
-                    p.style.transform = "scale(1)";
-                    p.style.transition = "all 0.4s ease";
-                });
-            }
+                // Reset wheel when clicking outside
+            wheel.addEventListener('click', function(e) {
+                if (e.target === wheel) {
+                    const svg = wheel.querySelector('svg');
+                    if (svg) {
+                        svg.querySelectorAll('path').forEach(p => {
+                            p.style.filter = "brightness(1) saturate(1) grayscale(0)";
+                            p.style.transform = "scale(1)";
+                            p.style.transition = "all 0.4s ease";
+                            p.classList.remove('grayed-out'); // Remove grayed-out class
+                        });
+                    }
             centerArrow.style.display = 'block';
             centerText.style.display = 'block';
             centerType.style.display = 'none';
@@ -656,6 +659,7 @@ function initCharacterAnimations() {
     let currentIndex = 0;
     let isAnimating = false;
     const animationDuration = 1200; // Match with CSS transition duration
+    const isMobile = window.innerWidth <= 768;
 
     // Initialize first character
     updateCharacter(container.querySelector('.character'), characters[0]);
@@ -675,43 +679,98 @@ function initCharacterAnimations() {
         const newIndex = (currentIndex + 1) % characters.length;
         const currentChar = container.querySelector('.character');
         
-        // Remove any existing characters first to prevent stacking
-        const allCharacters = container.querySelectorAll('.character');
-        allCharacters.forEach(char => {
-            if (char !== currentChar) {
-                container.removeChild(char);
+        if (isMobile) {
+            // Mobile carousel animation
+            const slideDirection = currentIndex % 2 === 0 ? 'right' : 'left'; // Alternate directions
+            
+            // Remove any existing characters first to prevent stacking
+            const allCharacters = container.querySelectorAll('.character');
+            allCharacters.forEach(char => {
+                if (char !== currentChar) {
+                    container.removeChild(char);
+                }
+            });
+            
+            // Create new character
+            const newChar = document.createElement('div');
+            newChar.className = 'character';
+            updateCharacter(newChar, characters[newIndex]);
+            container.appendChild(newChar);
+            
+            // Set initial position based on slide direction
+            if (slideDirection === 'right') {
+                currentChar.classList.add('slide-out-right');
+                newChar.classList.add('slide-in-left');
+            } else {
+                currentChar.classList.add('slide-out-left');
+                newChar.classList.add('slide-in-right');
             }
-        });
-        
-        // Create new character
-        const newChar = document.createElement('div');
-        newChar.className = 'character next';
-        updateCharacter(newChar, characters[newIndex]);
-        container.appendChild(newChar);
-        
-        // Trigger reflow to enable transition
-        void newChar.offsetWidth;
-        
-        // Start animation - current slides right, new slides in from left
-        currentChar.classList.add('exit');
-        newChar.classList.add('active');
-        newChar.classList.remove('next');
-        
-        // After animation completes
-        setTimeout(() => {
-            container.removeChild(currentChar);
+            
+            // Trigger reflow to enable transition
+            void newChar.offsetWidth;
+            
+            // Start animation
+            if (slideDirection === 'right') {
+                newChar.classList.add('slide-in-left', 'active');
+            } else {
+                newChar.classList.add('slide-in-right', 'active');
+            }
+            
+            // After animation completes
+            setTimeout(() => {
+                container.removeChild(currentChar);
+                newChar.classList.remove('slide-in-left', 'slide-in-right');
+                currentIndex = newIndex;
+                isAnimating = false;
+            }, animationDuration);
+        } else {
+            // Desktop animation (existing behavior)
+            // Remove any existing characters first to prevent stacking
+            const allCharacters = container.querySelectorAll('.character');
+            allCharacters.forEach(char => {
+                if (char !== currentChar) {
+                    container.removeChild(char);
+                }
+            });
+            
+            // Create new character
+            const newChar = document.createElement('div');
+            newChar.className = 'character next';
+            updateCharacter(newChar, characters[newIndex]);
+            container.appendChild(newChar);
+            
+            // Trigger reflow to enable transition
+            void newChar.offsetWidth;
+            
+            // Start animation - current slides right, new slides in from left
+            currentChar.classList.add('exit');
+            newChar.classList.add('active');
             newChar.classList.remove('next');
-            currentIndex = newIndex;
-            isAnimating = false;
-        }, animationDuration);
+            
+            // After animation completes
+            setTimeout(() => {
+                container.removeChild(currentChar);
+                newChar.classList.remove('next');
+                currentIndex = newIndex;
+                isAnimating = false;
+            }, animationDuration);
+        }
     }
 
-    // Auto-rotate every 3 seconds
-    setInterval(transitionToNextCharacter, 3000);
-
-
-
-
+    // Auto-rotate every 2 seconds on mobile, 3 seconds on desktop
+    const interval = isMobile ? 2000 : 3000;
+    const intervalId = setInterval(transitionToNextCharacter, interval);
+    
+    // Handle window resize to update animation behavior
+    window.addEventListener('resize', function() {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile !== isMobile) {
+            // Clear existing interval and restart with new timing
+            clearInterval(intervalId);
+            const newInterval = newIsMobile ? 2000 : 3000;
+            setInterval(transitionToNextCharacter, newInterval);
+        }
+    });
 }
 
 // Add scroll animations

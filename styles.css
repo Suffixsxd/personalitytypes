@@ -810,6 +810,133 @@ body::after {
     animation: float 4s ease-in-out infinite;
 }
 
+/* Mobile Carousel Animation Styles */
+@media (max-width: 768px) {
+    .character-container {
+        display: block;
+        height: 280px;
+        max-width: 400px;
+        margin: 0 auto;
+        overflow: hidden; /* Changed to hidden for carousel */
+        position: relative;
+    }
+    
+    .character {
+        width: 280px;
+        height: 280px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        z-index: 1;
+    }
+    
+    .character.active {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        animation: none; /* Remove float animation on mobile */
+    }
+    
+    .character.slide-out-left {
+        transform: translate(-200%, -50%);
+        opacity: 0;
+        z-index: 2;
+    }
+    
+    .character.slide-out-right {
+        transform: translate(200%, -50%);
+        opacity: 0;
+        z-index: 2;
+    }
+    
+    .character.slide-in-left {
+        transform: translate(-200%, -50%);
+        opacity: 0;
+        z-index: 2;
+    }
+    
+    .character.slide-in-right {
+        transform: translate(200%, -50%);
+        opacity: 0;
+        z-index: 2;
+    }
+    
+    .character.slide-in-left.active {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        z-index: 3;
+    }
+    
+    .character.slide-in-right.active {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        z-index: 3;
+    }
+}
+
+@media (max-width: 480px) {
+    .character-container {
+        display: block;
+        height: 220px;
+        max-width: 350px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .character {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* Safari-specific fixes for personality wheel */
+@supports (-webkit-appearance: none) {
+    .wheel-segment {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    .wheel-segment:hover {
+        -webkit-transform: translateZ(0) scale(1.05);
+        transform: translateZ(0) scale(1.05);
+    }
+    
+    .wheel-segment.active {
+        -webkit-transform: translateZ(0) scale(1.02);
+        transform: translateZ(0) scale(1.02);
+    }
+    
+    /* Force hardware acceleration for Safari */
+    .wheel {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* Ensure grayscale filter works in Safari */
+    .wheel-segment.grayed-out {
+        -webkit-filter: grayscale(1) brightness(0.7);
+        filter: grayscale(1) brightness(0.7);
+    }
+    
+    /* Additional Safari fixes for SVG paths */
+    .wheel svg path {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    .wheel svg path.grayed-out {
+        -webkit-filter: grayscale(1) brightness(0.7);
+        filter: grayscale(1) brightness(0.7);
+    }
+}
 
 
 /* Statistics Section */
